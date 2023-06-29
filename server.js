@@ -19,6 +19,20 @@ const sequelize = new Sequelize(
   }
 );
 
+const initDb = async () => {
+  await sequelize.sync();
+}
+
+initDb()
+
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(express.static("public"));
+
+
 app.get("/", function(req, res) {
   res.send("Ok");
 });
