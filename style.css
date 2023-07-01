@@ -1,0 +1,52 @@
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #googleMap {
+  margin-left: 10%;
+  width:80%;
+  height:400px;
+  }
+  h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: brown;
+  }
+  h4{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    align-items: center;
+  }
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html{
+    box-sizing: border-box;
+    font-size: 100%;
+  }
+  body {
+    background-color: bisque;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .table1{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .table2{
+    width: 90%;
+    height: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 3px solid bisque;
+    background-color: brown;
+  }
+  .cell{
+    padding: 15px;
+    align-content: center;
+  }
