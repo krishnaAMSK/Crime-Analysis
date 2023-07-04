@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+   <div class="login-page">
+    <div class="form">
+      <img src="image.png" alt="image" width="80px" height="80px">
+      <h1>Sign Up</h1>
+      <form id="loginForm">
+        <input type="email" id="userid" placeholder="User ID" required>
+        <input type="password" id="password" placeholder="Create Password" required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <style>
+    body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgb(34,193,195);
+    background: linear-gradient(135deg, #0033A0 0%, #B22234 100%);
+    font-family: "work sans";
+  }
+  
+  .login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+  }
+
+  h1{
+    margin-top: -0.8px;
+  }
+  
+  .form {
+    max-width: 1000px;
+    min-width: 300px;
+    height: 375px;
+    background-color: #FFFFFF;
+    margin-top: -140px;
+    border-radius: 25px;
+    position: relative;
+    z-index: 1;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  
+  .form input {
+    border-radius: 7px;
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #0033A0 0%, #B22234 100%);
+  }
+  
+  .form button:hover,.form button:active,.form button:focus {
+    background: linear-gradient(135deg, #0033A0 0%, #B22234 100%);
+    opacity: 0.8;
+  }
+  
+  .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+  }
+  
+  .form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  </style>
+</body>
+</html>
