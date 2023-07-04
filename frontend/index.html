@@ -14,32 +14,55 @@
 	
 	</head>
 	<body>
-            
+            <div>
+
+              <select id="stationSelect"></select>
+
+              <script>
+                fetch('http://localhost:5000/api/v1/policestationlist')
+                  .then(response => response.json())
+                  .then(data => {
+                    const policeStations = data.policeStations;
+                    const selectElement = document.getElementById('stationSelect');
+                    
+                    for (let i = 0; i < policeStations.length; i++) {
+                      const station = policeStations[i];
+                      
+      
+                      const optionElement = document.createElement('option');
+                      optionElement.value = station.name; 
+                      optionElement.textContent = station.name; 
+                  
+                      selectElement.appendChild(optionElement);
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error:', error); 
+                  });
+              </script>
+              
+            </div>
             <div id="map"></div>
         <script>
-            var map=new MapmyIndia.Map("map",{ center:[10.745735, 78.789982], zoomControl: true, hybrid:true, search:true, location:true}); /*map initialized*/
+            var map=new MapmyIndia.Map("map",{ center:[10.808907067095587,78.68501399552801], zoomControl: true, hybrid:true, search:true, location:true}); /*map initialized*/
         
       
+  
         
-        L.marker([10.7905, 78.7047]).addTo(map);
-
-        
-        fetch('http://localhost:5001/api/v1/policestationlist')
+        fetch('http://localhost:5000/api/v1/policestationlist')
   .then(response => response.json())
   .then(data => {
     const policeStations = data.policeStations;
     for (let i = 0; i < policeStations.length; i++) {
   const station = policeStations[i];
   console.log(station.name, station.lat, station.long);
-  L.marker([station.lat,  station.long]).addTo(map);
+  const marker= L.marker([station.lat,  station.long]).addTo(map);
+  marker.bindPopup(`<a href="http://127.0.0.1:5500/frontend/data.html?name=${station.name}">${station.name}</a>`); 
 }
   })
   .catch(error => {
-    console.error('Error:', error); // Handle any errors that occurred during the fetch request
+    console.error('Error:', error); 
   });
-        
-      
-  
          </script>
 	</body>
 </html>

@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Data</title>
+  </head>
+  <body>
+    <div id="dataContainer"></div>
+     <br><br>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const stationName = urlParams.get('name');
+
+      fetch('http://localhost:5000/api/v1/getpolicestationreport', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ station: stationName })
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response data
+          const dataContainer = document.getElementById('dataContainer');
+          const dataArray = data.data;
+           console.log(data);
+           const itemC = document.createElement('center');
+           itemC.innerHTML = `<h1>Total Ganja: ${data.totalSeizedGanja} Kg </h1>`
+           dataContainer.appendChild(itemC);
+
+          // Iterate over the data array and generate HTML elements
+          dataArray.forEach(item => {
+            const itemContainer = document.createElement('div');
+            itemContainer.innerHTML = `
+            <hr>
+              <p>Station: ${item.station}</p>
+              <p>Date of Report: ${item.dateOfReport}</p>
+              <p>Time of Report: ${item.timeOfReport}</p>
+              <p>Place of Occurrence: ${item.placeOfOccurrence}</p>
+              <p>No. of Accused Arrested: ${item.noOfAccusedArrested}</p>
+              <p>Name of Accused: ${item.nameOfAccused}</p>
+              <p>Seized Ganja: ${item.seizedGanja}</p>
+              <p>Seized Vehicle and Mobile: ${item.seizedVehicleAndMobile}</p><br>
+            `;
+            dataContainer.appendChild(itemContainer);
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    </script>
+  </body>
+</html>
