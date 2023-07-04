@@ -43,4 +43,17 @@ connectDatabase();
       process.exit(1);
     }
   })();
-  
+  const police = require('./police.json');
+const policestation = require('../model/policestation');
+  const seedPolice=async()=>{
+    try{
+           await policestation.deleteMany();
+           await policestation.insertMany(police);
+           console.log('added Successfully');
+           process.exit();
+    } catch(error){
+        console.log(error.message);
+        process.exit();
+    }
+}
+seedPolice();
