@@ -1,0 +1,127 @@
+Id,Police_Station,Reporting_Date,Reporting_Time,Month_,Place,Accused,NameOfAccused,Ganja
+1,E.PUDUR,24.01.2023,1200,January,"Karumandapam Koraiyatru bridge near",1,"Ganeshan, 30/23, s/o Mariyappan, No.34/E Municipality Colony, Poosari street, Kela chithamani, Trichy.",0.120
+2,E.PUDUR,24.01.2023,1200,January,"Dindugal Road Oxford colege near",1,"Vignesh, 32/23, s/o Raj, Muthu Store, Poosari street, Kelachinthamani, Trichy.",0.100
+3,Woraiyur,22.01.2023,1700,January,"Woraiyur Konakkarai road, Maingate near",2,"1. Muhamed Nimthiyash 23/23, s/o Muhamed Sarriya, No.32, Mariayammai Street, M.k.Kottai, Trichy. 2.Sarath @ Rathinasamy 23/23, s/o SelvakumarNo.1/2, Nagammai Street, M.K.kottai, Trichy. GOC - HS NO. 300/21 ",2.000
+4,PEW,19.01.2023,1400,January,"Cauvery Bridge Near",1,"Tirumalai 32/23, S/o Sekar No15 Annai Sathiya Nager, ",0.050
+5,PEW,19.01.2023,1400,January,"Oyamari Graveyard Nearby",1,"Rajesh 35/23, S/o Maharajan No62, Thiraviyamman Kovil Street, Chithamani Trichy",0.050
+6,PEW,19.01.2023,2000,January,"Near Devathanam Railway gate ",1,"kumar 29/23, S/o Ravi, No40/8 Thiruvathiammal kovil street, Kelachinthami, Trichy",0.050
+7,PEW,19.01.2023,2000,January,"Near by Cauvery Bridge Odathurai",1,"Sanjay 20/23, S/o Shanumugam, No36/1 T.V .Kovil ,Srirangam, Trichy",0.050
+8,S.COURT,10.02.2023,900,February,"Mil colony, mariyamman kovil near",1,"Perumal @ Appash 40/23, S/o Subramaiyan, mela new Street, Periyameglupari, Trichy",0.710
+9,E.PUDUR,19.02.2023,2000,February,"Near Anna statue",1,"Mulumathi 60/23, W/o kesavan 1/67 milk colony mariyamman kovil 7th street, ramjie nager, Trichy",0.110
+10,FORT,07.02.2023,1830,February,"EB Office Bus stop near",1,"Somasundaram 65/23 S/o Ayyakannu, West chinthamani, Trichy.",0.100
+11,FORT,11.03.2023,1545,MARCH,"Ramjinagar, Mill colony, Mariyammal kovil backside",1,"Kathiresan 19/23 S/o Gurusamy, Kamarajar road, Fort",1.100
+12,Palakkarai,11.03.2023,1240,MARCH,"Near Masingpettai",1,"SUDHAKAR 43/23, S/O. JEGANATHAN, 12/44, KOONI BAZAAR, SAVERIYAR KOVIL STREET, PALAKKARAI, TRICHY.",0.200
+13,Palakkarai,12.03.2023,1230,MARCH,"Arif khan, 18/23, S/o Selvam, No.81/C, Pasumadam, Kajapettai, Palakkarai,, Trichy",1,"Arif khan, 18/23, S/o Selvam, No.81/C, Pasumadam, Kajapettai, Palakkarai,, Trichy",0.200
+14,Palakkarai,13.03.2023,1400,MARCH,"Gorimedu, Near public Toilet",1,"THIRUBUTTON @ ARUNKUMAR 30/23, S/O. VENKATESAN, NO.14/34, KORIMEDU KOONI BAZAAR, BEEMA NAGAR, TRICHY.",0.200
+15,Palakkarai,14.03.2023,1145,MARCH,"Muthliyar chathiram, Mariyamman kovil near",1,"AROCKIYA SELVAPERUMAL 20/23, S/O. PALANIVEL, NO.C12, MARIYAMMAN KOVIL STREET, MUTHALIYAR CHATHIRAM, PALAKKARAI, TRICHY.",0.200
+16,Palakkarai,17.03.2023,1100,MARCH,"Dharmanathapuram, Near public toilet",2,"1) THOMAS ANTONY 23/23, S/O. LEO FERNANDAS, NO.78, ANTHONIYAR KOVIL STREET, DHARMANTHAPURAM, PALAKKARAI, TRICHY. 2) RAJESH 23/23, S/O. CHANDRU, NO.83, ANTHONIYAR KOVIL STREET, DHARMANATHAPURAM, PALAKKARAI, TRICHY.",1.100
+17,FORT,19.03.2023,900,MARCH,"EB Road Anthoniyar kovil arch near",1,"Naganathan 24/23 S/o Gunasekaran, 25/13 Gorimettu st, East Chinthamani",0.100
+18,E.PUDUR,22.03.2023,1900,MARCH,"Chinthamani anna statue near",1,"Jai @ Janakiraman, 45/23, s/o Navaneethakrishnan, No.111 3th Street, Mill Colony, Ramji Nagar, Trichy.",2.450
+19,Palakkarai,28.03.2023,1330,MARCH,"Surenkumar, 23/23,S/o Nataraj, NO.8, Annai Avenue, 3rd cross, Keelavasal, Srirangam, Trichy.",1,"Veeramani 32/23 S/o Kaliyan 64/14 Cooni bazar, Beemanagar",1.150
+20,Palakkarai,31.03.2023,1100,MARCH,"Beemanagar kooni bazar, Vennila Tea stall near",1,"Barani 20/23 S/o Ramamoorthy, Paruppukara st, Palakkarai",1.200
+21,Srirangam,31.03.2023,1145,MARCH,"Palakkarai Natraj Lodge near",1,"Surenkumar 23/23 S/o Natraj ,8-Annai Avenue, East St, Srirangam",0.010
+22,E.PUDUR,01.04.2023,1600,APRIL,"Retaimalai cauvery nagar ",2,"1. Lakshmanan, 44/23 S/o Moorthy
+No. 100, 3rd Street, Mil Colony, Ramji Nagar, Trichy
+2. Rajeshwari 42/23,  W/o Dharmar, No.51/A, 
+Keezha Street, Pirattiyur, Trichy.",1.400
+23,Palakkarai,08.04.2023,1930,APRIL,"Beemanagar kooni bazar, Vennila Tea stall near",1,"Karthick 23/23, s/o. Paramasivam, No.14/15, Anjaneyar kovil street, Kooni Bazaar, Beema Nagar, Trichy.",0.100
+24,Woraiyur,08.04.2023,1300,APRIL,"Kerala Ayurvedha Hospital near, Kulumani road, Subramaniyanagar, Woraiyur, Trichy.",1,"Ganesh 24/23, S/o. Chelladurai, No.13A, Kamatchiyamman kovil street, Goundanpalayam, Woraiyur, Trichy.",0.100
+25,E.PUDUR,09.04.2023,815,APRIL,"E.Pudur,Infront of  SBI ATM ",1,"Malliga 63/23, W/o. Dhayalan, NO.48, Mill Colony Mariyamman kovil street, Ramji Nagar, Trichy",0.150
+26,E.PUDUR,09.04.2023,1430,APRIL,"Mill colony, Mariyamman kovil near",1,"Priya 45/23, W/o. Ganesan, No.48, Mill Colony Mariyamman kovil street, Ramji Nagar, Trichy",0.150
+27,FORT,10.04.2023,1800,APRIL,"Madurai road, Raja theatre bus stop near",1,"Ajeem Mohmed 42/23, S/o. Mohamed Ansari, No.75B, Vannathi Santhu, Madurai Road, Trichy.",0.100
+28,FORT,11.04.2023,1100,APRIL,"Chinthamani Morning market",1,"Pandiyan 23/23, S/o. Moorthy, No.C37, Panchapur, Vinayagar Nagar, Manikandam Tk., Trichy.",0.100
+29,G.Market,10.04.2023,1230,APRIL,"Palbathrakaliyamman kovil near bathroom",1,"Thangaraj 23/23, s/o. Pandiyan, No.18E, Manickampillai Thoppu, Kamaraj Nagar, North Tharanallur, Trichy",0.100
+30,G.Market,12.04.2023,1000,APRIL,"Tanjore Road, Akshaya Bakery opp.",1,"Vagees Raja @ Vaithan @ Sudhagar 44/23,. s/o.Andhuvan Soosairaj, No.37A, Pillaima Nagar, Eda Street, Trichy HS No. 81/97",0.100
+31,Palakkarai,11.04.2023,1830,APRIL,"Sangiliyandapuram MGR Nagar near",1,"Navaladiyan 45/22, s/o. Muniyandi, No.153, MGR Nagar, Sangiliyandapuram, Palakkarai, Trichy.",0.100
+32,Palakkarai,11.04.2023,2100,APRIL,"Kajapettai Public toilet near",1,"Surya 20/23, S/o. Manickam, No.22B, Kruvikara street, Palakkarai, Trichy.",0.100
+33,E.PUDUR,15.04.2023,1230,APRIL,"Mill Colony, Kanmani complex backside",1,"Dhanaseelan, 33/23,  S/o Vasu, No.18, Mariyamman Koil Street,  Ramji Nagar, Trichy.  
+",0.100
+34,E.PUDUR,15.04.2023,1400,APRIL,"Mill colony, Mariyamman kovil near",1,"Thulasi, 75/23, W/o Krishnan, Konarkulam, 
+Mill Colony, Ramjinagar, Trichy.  
+",0.100
+35,A.MANGALAM,19.04.2023,1230,APRIL,"North Ukkadai, Railway bridge under",3,"Mathan @ Goodshed Mathan, 39/23
+(SC/PR)S/o Thangamani,
+No. 12/14,Malaiyappa Nagar,
+Anna Street,Ariyamangalam.
+2)Tsunami @ Jayasri, 19/23 (Muthuraja)D/o Mohanraj, No. 9, 3rd Street,Ganapathi Nagar,
+Ariyamangalam.
+3)Akalya, 16/23 , (Naidu)D/o MoorthyEVR Street,
+Ponnammal Store,Rice Mill Bus Stop,Kamaraj Nagar,Ariyamangalam.
+",1.100
+36,E.PUDUR,20.04.2023,2000,APRIL,"Mill colony Mariyamman kovil back side",1,"Bharathiraja, 42/23, S/o Kesavan,
+No.1/134, New Kattur, Ramji Nagar, Trichy
+",0.100
+37,E.PUDUR,27.04.2023,1430,APRIL,"Mill colony Mariyamman kovil back side",1,"Subathra, 47/23, W/o Gopal, No. 89, 
+Mill Colony, Ramjinagar, Trichy. 
+",0.100
+38,E.PUDUR,27.04.2023,1800,APRIL,"Mill colony Bus stop near",1,"Prabakaran, 29/23 S/o Murugan, No. 1/184,
+Karai Street, Malaipatti, Ramji Nagar, Trichy.
+",0.100
+39,E.PUDUR,28.04.2023,1300,APRIL,"Mill colony Mariyamman kovil near",1,"Dhanalaxshmi 63/23 W/O Pandian, No.53, Mill Colony,  Rmji Nagar Trichy.",0.100
+40,E.PUDUR,28.04.2023,1300,APRIL,"Mill colony Kanmani Complex backside",1,"Balu @ Boobalan  28/23 S/o Sekar,  No. 35, Mariyamman Koil Street, Mill Colony, Trichy. ",0.100
+41,E.PUDUR,29.04.2023,1500,APRIL,"Mill colony Kanmani Thirumanamandapam near",1,"Santhosh 36/23, S/o kesavan, No.5/35, Mariyamman Koil Street, MillColony, Ramji Ngar, Trichy.",0.100
+42,"K.K. NAGAR",29.04.2023,1440,APRIL,"Kottappattu mainroad",1,"Deventhiran  35/23 S/o Ravichandran,  No -5 /10 SLR., CAMP ., Kottappattu,   Trichy.",0.010
+43,E.PUDUR,01.05.2023,1200,MAY,"Mill Colony, Bus stop near",1,"Kumaran @ Muthamizh Kumaran, 33/23
+S/o Rajan,No. 22, JRS Nagar,Karumandapam,
+Trichy.
+",0.200
+44,E.PUDUR,01.05.2023,1700,MAY,"Mil colony, Kanmani Complex near",1,"Sakthivel, 20/23,S/o Murugan,No. 184, Malaipatti,
+K. Kallikudi, Srirangam
+",0.150
+45,Srirangam,01.05.2023,1730,MAY,"TV Kovil periyar bridge under",1,"Manikandan, 23/23S/o Ravi,
+No. 465/B,Opposite to Modern School, 
+Asthinapuram,Ariyalur District.
+",0.050
+46,FORT,01.05.2023,1300,MAY,"Vennila street near Ration shop",1,"Ravi @ Ravichandran,23/23,S/o Ramesh,
+No.141, Gandhi Nagar, Chinthamani, Trichy.
+
+",0.200
+47,FORT,01.05.2023,1415,MAY,"Bala @ Balakrishnan, S/o Rengarajan, No.92, Mullainagar, Sanjeevi nagar, Devadhanam, Trichy",1,"Bala @ Balakrishnan, 27/23, S/o Rengarajan,
+No.92, Mullainagar, Sanjeevi Nagar, Devathanam.
+",0.200
+48,G.Market,01.05.2023,1030,MAY,"Kammbipotta pillayar kovil street",1,"Anand, 23/23,S/o Kanthavel,No.15/A, North Tharanallur, Kamaraj Nagar, Trichy.
+
+",0.100
+49,G.Market,01.05.2023,1215,MAY,"G.Market Atch near",1,"Tamilselvi, 55/23W/o Ganesan,No. 59, Kamaraj Nagar,
+Tharanallur (N), Trichy
+",0.100
+50,T.NAGER,01.05.2023,1630,MAY,"Thennur Eb Office, Railway gate near",1,"Dinesh @ Dineshkumar, 29/23S/o Chinnaiyan,
+Kannan Store,Kuppankulam,Madurai Road,
+Trichy. 
+",0.050
+51,G.Market,02.05.2023,1015,MAY,"Keerakadai bazar, sekkadi street, Ochaniyamman beef briyani shop near",1,"Kumaravel 64/23, Otchappan, No.41, Sevior mavu Mill, Sekkaditheru, Keeraikadai Bazar, tharanallur, Trichy.",1.150
+52,FORT,02.05.2023,1000,MAY,"Vennish street, Near ration shop",1,"Sakthivendran 27/23, s/o Perumal, No.2/54, Ganapathi nagar, Ariyamangalam, Trichy.",0.200
+53,FORT,02.05.2023,1000,MAY,"Near Periyasamy Tower , Chinthamani.",1,"Ranjith 22/23, S/o thanapal,Nariyan Street, T.V.Koil, Srirangam, Trichy.",0.200
+54,Woraiyur,02.05.2023,1130,MAY,"Vathukara street, Near Public Toilet",1,"Kunasekaran 23/23, S/o Rajakopal, No.12/24, North madulaikollai Street,  Woraiyur, Trichy.",0.200
+55,Woraiyur,02.05.2023,1330,MAY,"Linga Nagar ",1,"Kaliswaran 21/23, s/o Balasubramaniyan, No.34-B, Pandamangalam, Akkrakaram, Woraiyur, Trichy.,",0.200
+56,E.PUDUR,02.05.2023,1630,MAY,"Mill colony, Mariyamman kovil backside",1,"Arumugam 52/23, s/o Perumal, No.115, Mill Colony, RamJi Nagar, Trichy.",0.150
+57,E.PUDUR,03.05.2023,1315,MAY,"Mariyamman kovil  street, Mill colony, Ramjinagar, Trichy",1,"Tarkar 66, S/o Arumugam, No.10/20, Mill Colony, Ramji nagar, Trichy.",0.050
+58,Woraiyur,03.05.2023,1500,MAY,"Woraiyur Trunk road, Thambi Complex near",1,"Manikandan 23/23, s/o Kumar, No.203, Vandikara Street, Woraiyur, Trichy.",0.100
+59,E.PUDUR,04.05.2023,1830,MAY,"Mill colony Mariyamman kovil near",1,"Vimala, 53/23, W/o Rejendran, No. 120, Mariyamman Kovil Street, Mil Colony,
+Ramji Nagar, Trichy
+",0.030
+60,Woraiyur,04.05.2023,1200,MAY,"Near CSI Market",1,"Muhamed Azeek 20/23, s/o Muhamed Sabi, No.6/A, North Pankali Street, Woraiyur, Trichy.",1.100
+61,Srirangam,05.05.2023,1100,MAY,"Iraniyamman kovil junction",1,"Suryakumar 23/23, S/o. Mohan, No.46, Malligaipuram, T.V.Kovil, Trichy.",0.100
+62,FORT,05.05.2023,1400,MAY,"Old Good shed road, Near Railway junction",1,"Sadam Ussain 22/23 S/o Balasubramaniyan, No. 42- Subbaiyah St, Sangiliyandapuram, Trichy",0.000
+63,Palakkarai,05.05.2023,1330,MAY,"Duraisamypuram, Near Alex bridge",1,"Murali 35/23, S/o. Raji, No.20/9, Housing Board, Sengulam colony, Palakkarai, Trichy.",0.100
+64,G.Market,06.05.2023,1945,MAY,"Tharanallur Kallarai thottam near",1,"Suriya 20/23 S/o Marimuthu,1-Ram Pillai Varaku Kadai Santhu, North Tharanallaur, G.market, Trichy",0.100
+65,PEW,08.05.2023,1600,MAY,"Ramjinagar, Mill colony, Mariyammal kovil backside",1,"Mahendran 64/23, s/o Palanisamy, Gandhi nagar, No.3/93, thayanur, Ramji ngar, Punganur. Trichy Dt.",0.017
+66,PEW,10.05.2023,1600,MAY,"Subramaniyapuram Bus Stop Near",2,"1) Kumaran 35/23                  S/o Babu                           No 1/165 Malaipatti,  k.Kailkudei, Ramjnagar,Trichy                    1.100 Kg
+2)Babu 62/23      S/oKaruppaiya                 No 1/165 Malaipatti,  k.Kailkudei,
+Ramjnagar,Trichy 1,150Kg
+3)Takker S/o Arumugam Millcolony,Ramjinagar, Trichy.
+",2.250
+67,E.PUDUR,11.05.2023,1030,MAY,"Mill colony, Mariyamman kovil backside",1,"Mallika 44/23, W/o. Mohan, No.72, Mariyamman kovil, Colony Ramji Nagar, Trichy. 2) Dhanalakshmi, W/o. Pandiyan",1.300
+68,Srirangam,12.05.23,1630,MAY,"Thimmarayasamuthiram community hall near",1,"Bullet Mani @ Manikandan, 29/23, S/o Kittappa, NO.6, Thimmarayasamuthiram, TV Kovil, Trichy.",0.050
+69,FORT,14.05.23,1500,MAY,"EB Road Town station road ",1,"Ajithkumar 25/23, S/o. Kolanchiyappan, No.24/27, Bharathiyar Street, EB Road, Trichy.",0.200
+70,FORT,14.05.23,2145,MAY,"Chinthamani Annastatue near",1,"Rafiq @ Mohamed Rafiq 22/23, S/o. Megaboob Batcha, No.23, Kovalan Street, Senthaneerpuram, Trichy.",0.250
+71,FORT,14.05.23,2245,MAY,"Chinthamani bazar, wineshop near",1,"Mohamed Farook 21/23, s/o. Megaboob Batcha, No.23, Kovalan Street, Senthaneerpuram, Trichy.",0.250
+72,G.Market,14.05.23,1030,MAY,"Devar poonga near, Tharanallur",1,"Neerkathalingam 22/23, s/o. Marimuthu, No.2/MA Rampillai Viragukadai Santhu, North Tharanallur, Trichy.",0.100
+73,G.Market,14.05.23,1215,MAY,"Devar poonga near, Tharanallur",1,"Ayyappan 21/23, S/o. Venkatesan, Mosampatti Keela Street, Ettarai, Trichy.",0.100
+74,G.Market,15.05.23,1425,MAY,"Varaganeri Kummikarai, Near Patchai nagar",1,"Yunus 53/23, S/o. Ahamed, No.16, Muslim Street, Varaganeri, Trichy.",1.150
+75,Palakkarai,14.05.23,900,MAY,"Belsground near",1,"Surya 20/23, S/o. Manickam, No.22B, Kruvikara street, Palakkarai, Trichy.",0.200
+76,Palakkarai,14.05.23,1000,MAY,"Warehouse bus stop near",1,"Santhosh 24/23, S/o. Sankar, No.3/3E, Adaikkala Madha Kovil Street, Santhiyagappar Palayam, Kemstown, Palakkarai, Trichy",0.200
+77,Woraiyur,14.05.23,2145,MAY,"Salairoad, Karpargam tea stall",1,"Lakshmi Narayanan 21/23, s/o. Umapathy, No.56J 54 Keeraikollai street, Annai Medical Hospital, Woraiyur, Trichy.",0.150
+78,Woraiyur,15.05.23,1215,MAY,"Vathukara street, Near Public Toilet",1,"Vigneshvaran 21/23, s/o. Dhanasekar, No.53T Sevanthi Thoppu, Rengan Nagar, Woraiyur, Trichy.",0.150
+79,Airport,18.05.23,1400,MAY,"New street, Moris nagar, ",1,"Senthilkumar 45/23, S/o. Sakthivel, No.22, Karikalan, Anna Nagar, Pudukkottai Main Road, Sempattu, Airport, Trichy.",0.150
+80,E.PUDUR,19.05.2023,1545,MAY,"Panjapur Pasumai  Garden near",1,"Nanthakumar, 22/23, s/o Sankar, No.38/39 Indra Nagar, E.Pudur, Trichy.",1.300
