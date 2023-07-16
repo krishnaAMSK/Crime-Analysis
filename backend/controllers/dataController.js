@@ -72,3 +72,33 @@ exports.getPoliceStations = async (req, res, next)=>{
  }
 
 
+ exports.getCrimeType = async (req, res, next)=>{
+  try{
+     const crimeType = await Reports.distinct('crimeType');
+     res.status(200).json({
+       "crimeType":crimeType
+     });
+  } catch(err)
+  {
+     res.status(200).json({
+         err
+       });
+  }
+   
+ }
+
+ exports.getCrimeTypeData = async (req, res, next)=>{
+  try{
+  
+     const data = await Reports.find({'crimeType':req.body.crimeType});
+     res.status(200).json({
+      data
+     });
+  } catch(err)
+  {
+     res.status(200).json({
+         err
+       });
+  }
+   
+ }

@@ -1,51 +1,130 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Data</title>
-  </head>
-  <body>
-    <div id="dataContainer"></div>
-     <br><br>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const stationName = urlParams.get('name');
+<head>
+  <title>Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+      padding-top: 20px;
+      box-sizing: border-box;
+    }
 
-      fetch('http://localhost:5000/api/v1/getpolicestationreport', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ station: stationName })
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response data
-          const dataContainer = document.getElementById('dataContainer');
-          const dataArray = data.data;
-           console.log(data);
-           const itemC = document.createElement('center');
-           itemC.innerHTML = `<h1>Total Ganja: ${data.totalSeizedGanja} Kg </h1>`
-           dataContainer.appendChild(itemC);
+    #chartContainer {
+      width: 400px;
+      height: 400px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="chartContainer">
+    <canvas id="chartCanvas"></canvas>
+  </div>
+  <div><h1>Time window Ganja seized</h1></div>
+  <div id="dataContainer"></div>
 
-          // Iterate over the data array and generate HTML elements
-          dataArray.forEach(item => {
-            const itemContainer = document.createElement('div');
-            itemContainer.innerHTML = `
-            <hr>
-              <p>Station: ${item.station}</p>
-              <p>Date of Report: ${item.dateOfReport}</p>
-              <p>Time of Report: ${item.timeOfReport}</p>
-              <p>Place of Occurrence: ${item.placeOfOccurrence}</p>
-              <p>No. of Accused Arrested: ${item.noOfAccusedArrested}</p>
-              <p>Name of Accused: ${item.nameOfAccused}</p>
-              <p>Seized Ganja: ${item.seizedGanja}</p>
-              <p>Seized Vehicle and Mobile: ${item.seizedVehicleAndMobile}</p><br>
-            `;
-            dataContainer.appendChild(itemContainer);
-          });
-        })
-        .catch(error => {
-          console.error('Error:', error);
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const stationName = urlParams.get('name');
+
+    fetch('http://localhost:5001/api/v1/getpolicestationreport', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ station: stationName })
+    })
+      .then(response => response.json())
+      .then(data => {
+        const dataArray = data.data;
+
+        // Create an object to store the count of cases for each time class
+        const timeClasses = {
+          '0600-1400': 0,
+          '1400-2200': 0,
+          '2200-0600': 0
+        };
+
+        // Count the cases for each time class
+        dataArray.forEach(item => {
+          const timeOfReport = item.timeOfReport;
+          if (timeOfReport >= '06:00' && timeOfReport < '14:00') {
+            timeClasses['0600-1400']++;
+          } else if (timeOfReport >= '14:00' && timeOfReport < '22:00') {
+            timeClasses['1400-2200']++;
+          } else {
+            timeClasses['2200-0600']++;
+          }
         });
-    </script>
-  </body>
+
+        // Generate an array of counts for the pie chart
+        const countArray = Object.values(timeClasses);
+
+        // Create the chart using Chart.js
+        const chartCanvas = document.getElementById('chartCanvas');
+        new Chart(chartCanvas.getContext('2d'), {
+          type: 'pie',
+          data: {
+            labels: ['06:00-14:00', '14:00-22:00', '22:00-06:00'],
+            datasets: [{
+              label: 'Number of Cases',
+              data: countArray,
+              backgroundColor: ['rgba(231, 76, 60 , 1)', 'rgba(142, 68, 173, 1)', 'rgba(244, 208, 63, 1)'],
+              borderColor: ['rgb(248, 249, 249)', 'rgb(248, 249, 249)', 'rgb(248, 249, 249)'],
+              borderWidth: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            legend: {
+              position: 'top',
+            },
+            plugins: {
+              datalabels: {
+                formatter: (value, ctx) => {
+                  const datasets = ctx.chart.data.datasets;
+                  if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                    const sum = datasets[0].data.reduce((a, b) => a + b, 0);
+                    const percentage = ((value / sum) * 100).toFixed(2) + '%';
+                    return percentage;
+                  } else {
+                    return '';
+                  }
+                },
+                color: '#fff',
+              }
+            }
+          }
+        });
+
+        // Generate HTML elements for individual reports
+        const dataContainer = document.getElementById('dataContainer');
+        dataArray.forEach(item => {
+          const itemContainer = document.createElement('div');
+          itemContainer.innerHTML = `
+            <hr>
+            <p>Station: ${item.station}</p>
+            <p>Date of Report: ${item.dateOfReport}</p>
+            <p>Time of Report: ${item.timeOfReport}</p>
+            <p>Place of Occurrence: ${item.placeOfOccurrence}</p>
+            <p>No. of Accused Arrested: ${item.noOfAccusedArrested}</p>
+            <p>Name of Accused: ${item.nameOfAccused}</p>
+            <p>Seized Ganja: ${item.seizedGanja}</p>
+            <p>Seized Vehicle and Mobile: ${item.seizedVehicleAndMobile}</p><br>
+          `;
+          dataContainer.appendChild(itemContainer);
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+</body>
 </html>

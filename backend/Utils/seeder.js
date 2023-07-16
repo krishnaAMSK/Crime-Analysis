@@ -16,7 +16,7 @@ connectDatabase();
       // Loop through the data and create new report documents
       for (let i = 0; i < data.length; i++) {
         const row = data[i];
-       
+       console.log(JSON.stringify(row));
   
         const report = new Report({
           slNo: row.Id,
@@ -28,9 +28,10 @@ connectDatabase();
           noOfAccusedArrested: row.Accused,
           nameOfAccused: row.NameOfAccused,
           seizedGanja: row.Ganja,
-          seizedVehicleAndMobile: '', // Assuming the "Seized Vehicle & Mobile" field is not provided in the row format
+          seizedVehicleAndMobile: '',
+          crimeType: row.CrimeType
         });
-        console.log(JSON.stringify(report))
+        //console.log(JSON.stringify(report))
         // Save the report document to the database
         await report.save();
         console.log('Report saved successfully');
@@ -56,4 +57,3 @@ const policestation = require('../model/policestation');
         process.exit();
     }
 }
-seedPolice();

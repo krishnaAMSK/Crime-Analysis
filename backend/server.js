@@ -13,12 +13,15 @@ app.use(cors({
     sameSite: 'none', // Set sameSite attribute for cross-site cookies
   }));
 
+
 const port = process.env.PORT || 5000;
 const data = require('./routes/dataRoute');
+const admin= require('./routes/admin');
 const connectDatabase = require("./config/database");
 
 connectDatabase();
 app.use('/api/v1',data);
+app.use('/api/v1',admin);
 app.listen(port, () =>{
     console.log(`Server running on the port`)
     console.log(port)

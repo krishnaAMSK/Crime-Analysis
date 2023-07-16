@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const reportSchema = new mongoose.Schema({
   slNo: { type: String },
   station: { type: String },
+  crimeType:{type: String},
   dateOfReport: { type: String },
   timeOfReport: { type: String },
   month: { type: String },

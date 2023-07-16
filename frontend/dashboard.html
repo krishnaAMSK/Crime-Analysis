@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page with Sidebar and Navbar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .sidebar {
+      background-color: #333;
+      color: #fff;
+      width: 250px;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .sidebar h1 {
+      margin-top: 0;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .navbar h1 {
+      margin: 0;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .content {
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .slider {
+      width: 300px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>Sidebar</h1>
+    <!-- Add sidebar content here -->
+  </div>
+  
+  <div class="navbar">
+    <h1>Navbar</h1>
+    <!-- Add navbar content here -->
+  </div>
+  
+  <div class="content">
+    <h1>Main Content</h1>
+    <!-- Add main content here -->
+    
+    <h2>Sliders</h2>
+    <input type="range" class="slider" min="0" max="100" value="50">
+    <input type="range" class="slider" min="0" max="100" value="50">
+  </div>
+</body>
+</html>
