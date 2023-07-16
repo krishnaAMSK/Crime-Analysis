@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Report Form</title>
+</head>
+<body>
+    <script>
+        var station;
+        fetch('http://localhost:5001/api/v1/profile', {
+          method: 'POST',
+          credentials: 'include' // Include the cookie in the request
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(JSON.stringify(data));
+          station=data.admin.station;
+       
+        })
+        .catch(error => {
+          console.error('Error loading admin profile:', error);
+          window.location.href = "index.html";
+        });</script>
+  <h1>Add Report</h1>
+  <form id="reportForm">
+    <label for="slNo">Serial Number:</label>
+    <input type="text" id="slNo" name="slNo" required><br>
+
+
+
+    <label for="crimeType">Crime Type:</label>
+    <input type="text" id="crimeType" name="crimeType" required><br>
+
+    <label for="dateOfReport">Date of Report:</label>
+    <input type="date" id="dateOfReport" name="dateOfReport" required><br>
+
+    <label for="timeOfReport">Time of Report:</label>
+    <input type="time" id="timeOfReport" name="timeOfReport" required><br>
+
+    <label for="month">Month:</label>
+    <input type="text" id="month" name="month" required><br>
+
+    <label for="placeOfOccurrence">Place of Occurrence:</label>
+    <input type="text" id="placeOfOccurrence" name="placeOfOccurrence" required><br>
+
+    <label for="noOfAccusedArrested">Number of Accused Arrested:</label>
+    <input type="text" id="noOfAccusedArrested" name="noOfAccusedArrested" required><br>
+
+    <label for="nameOfAccused">Name of Accused:</label>
+    <input type="text" id="nameOfAccused" name="nameOfAccused" required><br>
+
+    <label for="seizedGanja">Seized Ganja:</label>
+    <input type="text" id="seizedGanja" name="seizedGanja" required><br>
+
+    <label for="seizedVehicleAndMobile">Seized Vehicle and Mobile:</label>
+    <input type="text" id="seizedVehicleAndMobile" name="seizedVehicleAndMobile" required><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('reportForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Create JSON object from form data
+      const report = {
+        slNo: document.getElementById('slNo').value,
+        station: station,
+        crimeType: document.getElementById('crimeType').value,
+        dateOfReport: document.getElementById('dateOfReport').value,
+        timeOfReport: document.getElementById('timeOfReport').value,
+        month: document.getElementById('month').value,
+        placeOfOccurrence: document.getElementById('placeOfOccurrence').value,
+        noOfAccusedArrested: document.getElementById('noOfAccusedArrested').value,
+        nameOfAccused: document.getElementById('nameOfAccused').value,
+        seizedGanja: document.getElementById('seizedGanja').value,
+        seizedVehicleAndMobile: document.getElementById('seizedVehicleAndMobile').value
+      };
+
+      // Send POST request to the API
+      fetch('http://localhost:5001/api/v1/addreport', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(report)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Report submitted:', data);
+        // Optionally, perform any additional actions after successful submission
+      })
+      .catch(error => {
+        console.error('Error submitting report:', error);
+        // Optionally, handle errors or display error messages
+      });
+    });
+  </script>
+</body>
+</html>

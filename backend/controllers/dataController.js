@@ -102,3 +102,19 @@ exports.getPoliceStations = async (req, res, next)=>{
   }
    
  }
+
+ exports.addReport= async (req, res, next)=>{
+  try{
+     console.log(JSON.stringify(req.body));
+     const data = await Reports.create(req.body);
+     res.status(200).json({
+      data
+     });
+  } catch(err)
+  {
+     res.status(200).json({
+         err
+       });
+  }
+   
+ }

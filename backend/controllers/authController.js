@@ -4,12 +4,13 @@ const catchAsyncError= require('../middleware/catchAsyncError');
 const sendToken = require('../Utils/jwtToken');
 const APIFeatures = require('../Utils/apiFeatures');
 exports.registerAdmin = catchAsyncError(async (req, res, next)=>{
-    const {name, email, password} = req.body;
+    const {name, email, password,station} = req.body;
 
   const admin = await Admin.create({
         name,
         email,
-        password
+        password,
+        station
     })
    sendToken(admin, 200,res);
 })
@@ -53,16 +54,22 @@ exports.getAdminProfile = catchAsyncError(async (req,res,next)=>{
   //Logout User
 
   exports.logoutAdmin = catchAsyncError(async(req,res,next)=>{
-    res.cookie('token',null,{
-        expires:new Date(Date.now()),
-        httpOnly:true
-    })
+
+    console.log("header: "+JSON.stringify(req.cookies));
+    res.cookie('token', null, {
+      expires: new Date(Date.now()), // Set the cookie expiration to a past date
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none'
+    });
+  
     res.status(200).json({
-        success:true,
-        message:'Logged out successfully'
-    })
+      success: true,
+      message: 'Logged out successfully'
+    });
 
 });
+
 
 
 

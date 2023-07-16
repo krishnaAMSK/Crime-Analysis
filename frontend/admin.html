@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Profile</title>
+  <style>
+    /* CSS styles for the admin profile page */
+
+    /* ... (Your existing CSS styles) */
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Profile</h2>
+    <div id="profileData"></div>
+    <button id="logoutButton">Logout</button>
+    <button id="addReportButton">Add Report</button>
+  </div>
+
+  <script>
+    // Fetch the admin profile data
+    fetch('http://localhost:5001/api/v1/profile', {
+      method: 'POST',
+      credentials: 'include' // Include the cookie in the request
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(JSON.stringify(data));
+      displayProfileData(data); // Display the profile data on success
+    })
+    .catch(error => {
+      console.error('Error loading admin profile:', error);
+      window.location.href = "index.html";
+    });
+
+    // Function to display the admin profile data
+    function displayProfileData(profile) {
+      const profileDataElement = document.getElementById('profileData');
+
+      // Create HTML elements to display the profile data
+      const nameElement = document.createElement('p');
+      nameElement.textContent = `Name: ${profile.admin.name}`;
+
+      const emailElement = document.createElement('p');
+      emailElement.textContent = `Email: ${profile.admin.email}`;
+
+      const roleElement = document.createElement('p');
+      roleElement.textContent = `Station: ${profile.admin.station}`;
+
+      // Append the profile data elements to the container
+      profileDataElement.appendChild(nameElement);
+      profileDataElement.appendChild(emailElement);
+      profileDataElement.appendChild(roleElement);
+    }
+
+    // Logout button click event handler
+    document.getElementById('logoutButton').addEventListener('click', function () {
+      fetch('http://localhost:5001/api/v1/logout', {
+        method: 'POST',
+        credentials: 'include' // Include the cookie in the request
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Logout successful');
+          window.location.href = "index.html";
+        } else {
+          console.error('Logout failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error during logout:', error);
+      });
+    });
+
+    // Add Report button click event handler
+    document.getElementById('addReportButton').addEventListener('click', function () {
+      window.location.href = "addReport.html";
+    });
+  </script>
+</body>
+</html>

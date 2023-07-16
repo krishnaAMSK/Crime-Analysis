@@ -16,6 +16,11 @@ const adminSchema = new mongoose.Schema({
     unique: true,
     validate:[validator.isEmail,'Please enter valid email address'] 
   },
+  station: {
+    type:String,
+    required: [true,'Please  enter your police station name']
+  }
+  ,
   password: {
     type: String,
     required:[true,'please enter your password'],

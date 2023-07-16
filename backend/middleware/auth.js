@@ -4,7 +4,11 @@ const AdminController = require("../model/admin");
 const ErrorHandler = require("../Utils/errorHandler");
 // Checks if user is authenticated or not.
 exports.isAuthenticated = catchAsyncError(async (req,res,next)=>{
-    const  { token } =req.cookies;
+
+    console.log(req.cookies);
+    const token = req.cookies.token;
+    
+     
     if(!token){
         return next(new ErrorHandler('Login first to access this resource.'));
     }
