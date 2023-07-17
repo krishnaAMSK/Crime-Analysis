@@ -1,51 +1,1115 @@
-<html>
-  <head>
-    <title>Data</title>
-  </head>
-  <body>
-    <div id="dataContainer"></div>
-     <br><br>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const stationName = urlParams.get('name');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    
+    <title>Data Table</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- ================ -->
+    <link rel="stylesheet" type="text/css" href="data.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 
-      fetch('http://localhost:5000/api/v1/getpolicestationreport', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ station: stationName })
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response data
-          const dataContainer = document.getElementById('dataContainer');
-          const dataArray = data.data;
-           console.log(data);
-           const itemC = document.createElement('center');
-           itemC.innerHTML = `<h1>Total Ganja: ${data.totalSeizedGanja} Kg </h1>`
-           dataContainer.appendChild(itemC);
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script defer src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+    <script defer src="data.js"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="navigation">
+        <div class="nav-bar">
+            <!-- <i class='bx bx-menu sidebarOpen' ></i> -->
+            <img src="image.png" alt="" width="75px" >
+            <span class="logo navLogo"><a href="#">TRICHY CITY POLICE</a></span>
+            <!-- <div><br><br></div> -->
+            <div class="menu">
+                <!-- <div class="logo-toggle">
+                    <i class='bx bx-x siderbarClose'></i>
+                </div> -->
+                <ul class="nav-links">
+                    <li><a href="landing.html">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+      </div>
 
-          // Iterate over the data array and generate HTML elements
-          dataArray.forEach(item => {
-            const itemContainer = document.createElement('div');
-            itemContainer.innerHTML = `
-            <hr>
-              <p>Station: ${item.station}</p>
-              <p>Date of Report: ${item.dateOfReport}</p>
-              <p>Time of Report: ${item.timeOfReport}</p>
-              <p>Place of Occurrence: ${item.placeOfOccurrence}</p>
-              <p>No. of Accused Arrested: ${item.noOfAccusedArrested}</p>
-              <p>Name of Accused: ${item.nameOfAccused}</p>
-              <p>Seized Ganja: ${item.seizedGanja}</p>
-              <p>Seized Vehicle and Mobile: ${item.seizedVehicleAndMobile}</p><br>
-            `;
-            dataContainer.appendChild(itemContainer);
-          });
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    </script>
-  </body>
+    <!--Data Table-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="filter">
+                <h3> </h3>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="stationFilter">Station:</label>
+                      <input type="text" id="stationFilter" class="form-control">
+
+                      <!-- <select id="stationFilter" class="form-select">
+                        <option value="">All</option>
+                        <option value="category1">Category 1</option>
+                        <option value="category2">Category 2</option>
+                        <option value="category3">Category 3</option> -->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="dateFilter">Date:</label>
+                      <input type="date" id="dateFilter" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="monthFilter">Month:</label>
+                      <select id="monthFilter" class="form-select">
+                        <option value="">All</option>
+                        <option value="jan">January</option>
+                        <option value="feb">February</option>
+                        <option value="march">March</option>
+                        <option value="april">April</option>
+                        <option value="may">May</option>
+                        <option value="june">June</option>
+                        <option value="july">July</option>
+                        <option value="aug">August</option>
+                        <option value="sept">September</option>
+                        <option value="oct">October</option>
+                        <option value="nov">November</option>
+                        <option value="dec">December</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="locationFilter">Location:</label>
+                      <input type="text" id="locationFilter" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        <div class="row">
+            <div class="col-10">
+                <div class="data_table"> 
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead class="table-light">
+            <tr>
+              <th>Sl.No.</th>
+              <th>Station</th>
+              <th>Date of Report</th>
+              <th>Time of Report</th>
+              <th>Month</th>
+              <th>Place of Occurrence</th>
+              <th>No.of Accused Arrested</th>
+              <th>Name of Accused</th>
+              <th>Seized Ganja</th>
+              <th>Siezed Vehicle/Mobile</th>
+            </tr>
+          </thead>
+        <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>E.PUDUR,   <br/>Cr.No. 41/2023,  <br/> U/S, 8© r/w 20(b)(2)(a) NDPS ACT</td>
+                    <td>24.01.2023</td>
+                    <td>1200</td>
+                    <td>January</td>
+                    <td>Karumandapam Koraiyatru bridge near</td>
+                    <td>1</td>
+                    <td>Ganeshan, 30/23, s/o Mariyappan, No.34/E Municipality Colony, Poosari street, Kela chithamani, Trichy.</td>
+                    <td>0.12</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>E.PUDUR,<br/>Cr.No. 42/2023,  <br/> U/S, 8© r/w 20(b)(2)(a) NDPS ACT</td>
+                    <td>24.01.2023</td>
+                    <td>1200</td>
+                    <td>January</td>
+                    <td>Dindugal Road Oxford colege near</td>
+                    <td>1</td>
+                    <td>Vignesh, 32/23, s/o Raj, Muthu Store, Poosari street, Kelachinthamani, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Woraiyur, <br/>Cr.No. 58/2023, <br/>U/S, 8(c) R/W 20(b)(ii)(B) &amp; 25 of NDPS Act</td>
+                    <td>22.01.2023</td>
+                    <td>1700</td>
+                    <td>January</td>
+                    <td>Woraiyur Konakkarai road, Maingate near</td>
+                    <td>2</td>
+                    <td>1. Muhamed Nimthiyash 23/23, s/o Muhamed Sarriya, No.32, Mariayammai Street, M.k.Kottai, Trichy. 2.Sarath @ Rathinasamy 23/23, s/o SelvakumarNo.1/2, Nagammai Street, M.K.kottai, Trichy. GOC - HS NO. 300/21 </td>
+                    <td>2</td>
+                    <td>4W -1, TN 45 BL 7438 Xcent Prime white Colour Car</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>PEW,<br/>Cr.No. 64/2023, <br/>U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>19.01.2023</td>
+                    <td>1400</td>
+                    <td>January</td>
+                    <td>Cauvery Bridge Near</td>
+                    <td>1</td>
+                    <td>Tirumalai 32/23, S/o Sekar No15 Annai Sathiya Nager, </td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>PEW,Cr.No. 65/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>19.01.2023</td>
+                    <td>1400</td>
+                    <td>January</td>
+                    <td>Oyamari Graveyard Nearby</td>
+                    <td>1</td>
+                    <td>Rajesh 35/23, S/o Maharajan No62, Thiraviyamman Kovil Street, Chithamani Trichy</td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>PEW,Cr.No. 66/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>19.01.2023</td>
+                    <td>2000</td>
+                    <td>January</td>
+                    <td>Near Devathanam Railway gate </td>
+                    <td>1</td>
+                    <td>kumar 29/23, S/o Ravi, No40/8 Thiruvathiammal kovil street, Kelachinthami, Trichy</td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>PEW,Cr.No. 67/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>19.01.2023</td>
+                    <td>2000</td>
+                    <td>January</td>
+                    <td>Near by Cauvery Bridge Odathurai</td>
+                    <td>1</td>
+                    <td>Sanjay 20/23, S/o Shanumugam, No36/1 T.V .Kovil ,Srirangam, Trichy</td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>S.COURT,Cr.No. 69/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>10.02.2023</td>
+                    <td>900</td>
+                    <td>February</td>
+                    <td>Mil colony, mariyamman kovil near</td>
+                    <td>1</td>
+                    <td>Perumal @ Appash 40/23, S/o Subramaiyan, mela new Street, Periyameglupari, Trichy</td>
+                    <td>0.71</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>E.PUDUR,Cr.No. 72/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>19.02.2023</td>
+                    <td>2000</td>
+                    <td>February</td>
+                    <td>Near Anna statue</td>
+                    <td>1</td>
+                    <td>Mulumathi 60/23, W/o kesavan 1/67 milk colony mariyamman kovil 7th street, ramjie nager, Trichy</td>
+                    <td>0.11</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>FORT,Cr.No. 200/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>07.02.2023</td>
+                    <td>1830</td>
+                    <td>February</td>
+                    <td>EB Office Bus stop near</td>
+                    <td>1</td>
+                    <td>Somasundaram 65/23 S/o Ayyakannu, West chinthamani, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>FORT,Cr.No. 275/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>11.03.2023</td>
+                    <td>1545</td>
+                    <td>MARCH</td>
+                    <td>Ramjinagar, Mill colony, Mariyammal kovil backside</td>
+                    <td>1</td>
+                    <td>Kathiresan 19/23 S/o Gurusamy, Kamarajar road, Fort</td>
+                    <td>1.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Palakkarai,Cr.No. 228/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>11.03.2023</td>
+                    <td>1240</td>
+                    <td>MARCH</td>
+                    <td>Near Masingpettai</td>
+                    <td>1</td>
+                    <td>SUDHAKAR 43/23, S/O. JEGANATHAN, 12/44, KOONI BAZAAR, SAVERIYAR KOVIL STREET, PALAKKARAI, TRICHY.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Palakkarai,Cr.No. 235/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>12.03.2023</td>
+                    <td>1230</td>
+                    <td>MARCH</td>
+                    <td>Arif khan, 18/23, S/o Selvam, No.81/C, Pasumadam, Kajapettai, Palakkarai,, Trichy</td>
+                    <td>1</td>
+                    <td>Arif khan, 18/23, S/o Selvam, No.81/C, Pasumadam, Kajapettai, Palakkarai,, Trichy</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Palakkarai,Cr.No. 243/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>13.03.2023</td>
+                    <td>1400</td>
+                    <td>MARCH</td>
+                    <td>Gorimedu, Near public Toilet</td>
+                    <td>1</td>
+                    <td>THIRUBUTTON @ ARUNKUMAR 30/23, S/O. VENKATESAN, NO.14/34, KORIMEDU KOONI BAZAAR, BEEMA NAGAR, TRICHY.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Palakkarai,Cr.No. 245/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>14.03.2023</td>
+                    <td>1145</td>
+                    <td>MARCH</td>
+                    <td>Muthliyar chathiram, Mariyamman kovil near</td>
+                    <td>1</td>
+                    <td>AROCKIYA SELVAPERUMAL 20/23, S/O. PALANIVEL, NO.C12, MARIYAMMAN KOVIL STREET, MUTHALIYAR CHATHIRAM, PALAKKARAI, TRICHY.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Palakkarai,Cr.No. 256/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>17.03.2023</td>
+                    <td>1100</td>
+                    <td>MARCH</td>
+                    <td>Dharmanathapuram, Near public toilet</td>
+                    <td>2</td>
+                    <td>1) THOMAS ANTONY 23/23, S/O. LEO FERNANDAS, NO.78, ANTHONIYAR KOVIL STREET, DHARMANTHAPURAM, PALAKKARAI, TRICHY. 2) RAJESH 23/23, S/O. CHANDRU, NO.83, ANTHONIYAR KOVIL STREET, DHARMANATHAPURAM, PALAKKARAI, TRICHY.</td>
+                    <td>1.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>FORT,Cr.No. 320/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>19.03.2023</td>
+                    <td>900</td>
+                    <td>MARCH</td>
+                    <td>EB Road Anthoniyar kovil arch near</td>
+                    <td>1</td>
+                    <td>Naganathan 24/23 S/o Gunasekaran, 25/13 Gorimettu st, East Chinthamani</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>E.PUDUR,Cr.No. 193/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>22.03.2023</td>
+                    <td>1900</td>
+                    <td>MARCH</td>
+                    <td>Chinthamani anna statue near</td>
+                    <td>1</td>
+                    <td>Jai @ Janakiraman, 45/23, s/o Navaneethakrishnan, No.111 3th Street, Mill Colony, Ramji Nagar, Trichy.</td>
+                    <td>2.45</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Palakkarai,Cr.No. 338/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>28.03.2023</td>
+                    <td>1330</td>
+                    <td>MARCH</td>
+                    <td>Surenkumar, 23/23,S/o Nataraj, NO.8, Annai Avenue, 3rd cross, Keelavasal, Srirangam, Trichy.</td>
+                    <td>1</td>
+                    <td>Veeramani 32/23 S/o Kaliyan 64/14 Cooni bazar, Beemanagar</td>
+                    <td>1.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Palakkarai,Cr.No. 354/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>31.03.2023</td>
+                    <td>1100</td>
+                    <td>MARCH</td>
+                    <td>Beemanagar kooni bazar, Vennila Tea stall near</td>
+                    <td>1</td>
+                    <td>Barani 20/23 S/o Ramamoorthy, Paruppukara st, Palakkarai</td>
+                    <td>1.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Srirangam,Cr.No. 462/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>31.03.2023</td>
+                    <td>1145</td>
+                    <td>MARCH</td>
+                    <td>Palakkarai Natraj Lodge near</td>
+                    <td>1</td>
+                    <td>Surenkumar 23/23 S/o Natraj ,8-Annai Avenue, East St, Srirangam</td>
+                    <td>0.01</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>E.PUDUR,Cr.No. 250/2023,   U/S, 8 © r/w  20 (b) (ii) (B) of NDPS Act<br/></td>
+                    <td>01.04.2023</td>
+                    <td>1600</td>
+                    <td>APRIL</td>
+                    <td>Retaimalai cauvery nagar </td>
+                    <td>2</td>
+                    <td>1. Lakshmanan, 44/23 S/o Moorthy<br/>No. 100, 3rd Street, Mil Colony, Ramji Nagar, Trichy<br/>2. Rajeshwari 42/23,  W/o Dharmar, No.51/A, <br/>Keezha Street, Pirattiyur, Trichy.</td>
+                    <td>1.4</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>Palakkarai,Cr.No. 410/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>08.04.2023</td>
+                    <td>1930</td>
+                    <td>APRIL</td>
+                    <td>Beemanagar kooni bazar, Vennila Tea stall near</td>
+                    <td>1</td>
+                    <td>Karthick 23/23, s/o. Paramasivam, No.14/15, Anjaneyar kovil street, Kooni Bazaar, Beema Nagar, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>Woraiyur,Cr.No. 439/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>08.04.2023</td>
+                    <td>1300</td>
+                    <td>APRIL</td>
+                    <td>Kerala Ayurvedha Hospital near, Kulumani road, Subramaniyanagar, Woraiyur, Trichy.</td>
+                    <td>1</td>
+                    <td>Ganesh 24/23, S/o. Chelladurai, No.13A, Kamatchiyamman kovil street, Goundanpalayam, Woraiyur, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>E.PUDUR,Cr.No. 313/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>09.04.2023</td>
+                    <td>815</td>
+                    <td>APRIL</td>
+                    <td>E.Pudur,Infront of  SBI ATM </td>
+                    <td>1</td>
+                    <td>Malliga 63/23, W/o. Dhayalan, NO.48, Mill Colony Mariyamman kovil street, Ramji Nagar, Trichy</td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>E.PUDUR,Cr.No. 314/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>09.04.2023</td>
+                    <td>1430</td>
+                    <td>APRIL</td>
+                    <td>Mill colony, Mariyamman kovil near</td>
+                    <td>1</td>
+                    <td>Priya 45/23, W/o. Ganesan, No.48, Mill Colony Mariyamman kovil street, Ramji Nagar, Trichy</td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>FORT,Cr.No. 534/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>10.04.2023</td>
+                    <td>1800</td>
+                    <td>APRIL</td>
+                    <td>Madurai road, Raja theatre bus stop near</td>
+                    <td>1</td>
+                    <td>Ajeem Mohmed 42/23, S/o. Mohamed Ansari, No.75B, Vannathi Santhu, Madurai Road, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>FORT,Cr.No. 540/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>11.04.2023</td>
+                    <td>1100</td>
+                    <td>APRIL</td>
+                    <td>Chinthamani Morning market</td>
+                    <td>1</td>
+                    <td>Pandiyan 23/23, S/o. Moorthy, No.C37, Panchapur, Vinayagar Nagar, Manikandam Tk., Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>G.Market,Cr.No. 339/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>10.04.2023</td>
+                    <td>1230</td>
+                    <td>APRIL</td>
+                    <td>Palbathrakaliyamman kovil near bathroom</td>
+                    <td>1</td>
+                    <td>Thangaraj 23/23, s/o. Pandiyan, No.18E, Manickampillai Thoppu, Kamaraj Nagar, North Tharanallur, Trichy</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>G.Market,Cr.No. 346/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>12.04.2023</td>
+                    <td>1000</td>
+                    <td>APRIL</td>
+                    <td>Tanjore Road, Akshaya Bakery opp.</td>
+                    <td>1</td>
+                    <td>Vagees Raja @ Vaithan @ Sudhagar 44/23,. s/o.Andhuvan Soosairaj, No.37A, Pillaima Nagar, Eda Street, Trichy HS No. 81/97</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>Palakkarai,Cr.No. 427/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>11.04.2023</td>
+                    <td>1830</td>
+                    <td>APRIL</td>
+                    <td>Sangiliyandapuram MGR Nagar near</td>
+                    <td>1</td>
+                    <td>Navaladiyan 45/22, s/o. Muniyandi, No.153, MGR Nagar, Sangiliyandapuram, Palakkarai, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>Palakkarai,Cr.No. 429/2023,   U/S, 8© r/w 20(b)(ii)(A) NDPS Act</td>
+                    <td>11.04.2023</td>
+                    <td>2100</td>
+                    <td>APRIL</td>
+                    <td>Kajapettai Public toilet near</td>
+                    <td>1</td>
+                    <td>Surya 20/23, S/o. Manickam, No.22B, Kruvikara street, Palakkarai, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>33</td>
+                    <td>E.PUDUR,Cr.No. 365/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>15.04.2023</td>
+                    <td>1230</td>
+                    <td>APRIL</td>
+                    <td>Mill Colony, Kanmani complex backside</td>
+                    <td>1</td>
+                    <td>Dhanaseelan, 33/23,  S/o Vasu, No.18, Mariyamman Koil Street,  Ramji Nagar, Trichy.  <br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>34</td>
+                    <td>E.PUDUR,Cr.No. 367/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>15.04.2023</td>
+                    <td>1400</td>
+                    <td>APRIL</td>
+                    <td>Mill colony, Mariyamman kovil near</td>
+                    <td>1</td>
+                    <td>Thulasi, 75/23, W/o Krishnan, Konarkulam, <br/>Mill Colony, Ramjinagar, Trichy.  <br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>35</td>
+                    <td>A.MANGALAM,Cr.No. 305/2023,   U/S, 8 © r/w 20 (b) (ii) (B) of NDPS Act</td>
+                    <td>19.04.2023</td>
+                    <td>1230</td>
+                    <td>APRIL</td>
+                    <td>North Ukkadai, Railway bridge under</td>
+                    <td>3</td>
+                    <td>Mathan @ Goodshed Mathan, 39/23<br/>(SC/PR)S/o Thangamani,<br/>No. 12/14,Malaiyappa Nagar,<br/>Anna Street,Ariyamangalam.<br/>2)Tsunami @ Jayasri, 19/23 (Muthuraja)D/o Mohanraj, No. 9, 3rd Street,Ganapathi Nagar,<br/>Ariyamangalam.<br/>3)Akalya, 16/23 , (Naidu)D/o MoorthyEVR Street,<br/>Ponnammal Store,Rice Mill Bus Stop,Kamaraj Nagar,Ariyamangalam.<br/></td>
+                    <td>1.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>36</td>
+                    <td>E.PUDUR,Cr.No. 412/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>20.04.2023</td>
+                    <td>2000</td>
+                    <td>APRIL</td>
+                    <td>Mill colony Mariyamman kovil back side</td>
+                    <td>1</td>
+                    <td>Bharathiraja, 42/23, S/o Kesavan,<br/>No.1/134, New Kattur, Ramji Nagar, Trichy<br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>37</td>
+                    <td>E.PUDUR,Cr.No. 458/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>27.04.2023</td>
+                    <td>1430</td>
+                    <td>APRIL</td>
+                    <td>Mill colony Mariyamman kovil back side</td>
+                    <td>1</td>
+                    <td>Subathra, 47/23, W/o Gopal, No. 89, <br/>Mill Colony, Ramjinagar, Trichy. <br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>38</td>
+                    <td>E.PUDUR,Cr.No. 459/2023,   U/S, 8 ( c) r/w  20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>27.04.2023</td>
+                    <td>1800</td>
+                    <td>APRIL</td>
+                    <td>Mill colony Bus stop near</td>
+                    <td>1</td>
+                    <td>Prabakaran, 29/23 S/o Murugan, No. 1/184,<br/>Karai Street, Malaipatti, Ramji Nagar, Trichy.<br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>39</td>
+                    <td>E.PUDUR,Cr.No. 466/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>28.04.2023</td>
+                    <td>1300</td>
+                    <td>APRIL</td>
+                    <td>Mill colony Mariyamman kovil near</td>
+                    <td>1</td>
+                    <td>Dhanalaxshmi 63/23 W/O Pandian, No.53, Mill Colony,  Rmji Nagar Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td>E.PUDUR,Cr.No. 467/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>28.04.2023</td>
+                    <td>1300</td>
+                    <td>APRIL</td>
+                    <td>Mill colony Kanmani Complex backside</td>
+                    <td>1</td>
+                    <td>Balu @ Boobalan  28/23 S/o Sekar,  No. 35, Mariyamman Koil Street, Mill Colony, Trichy. </td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>41</td>
+                    <td>E.PUDUR,Cr.No. 477/2023,   U/S, 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act <br/></td>
+                    <td>29.04.2023</td>
+                    <td>1500</td>
+                    <td>APRIL</td>
+                    <td>Mill colony Kanmani Thirumanamandapam near</td>
+                    <td>1</td>
+                    <td>Santhosh 36/23, S/o kesavan, No.5/35, Mariyamman Koil Street, MillColony, Ramji Ngar, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>42</td>
+                    <td>K.K. NAGAR,Cr.No. 450/2023,   U/S, 8(C) R/W 20(B)(II)(A) NDPS  Act</td>
+                    <td>29.04.2023</td>
+                    <td>1440</td>
+                    <td>APRIL</td>
+                    <td>Kottappattu mainroad</td>
+                    <td>1</td>
+                    <td>Deventhiran  35/23 S/o Ravichandran,  No -5 /10 SLR., CAMP ., Kottappattu,   Trichy.</td>
+                    <td>0.01</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>43</td>
+                    <td>E.PUDUR,Cr.No. 493/2023,   U/S, s 8 © r/w 20 (b) (ii) (A) of NDPS Act<br/><br/></td>
+                    <td>01.05.2023</td>
+                    <td>1200</td>
+                    <td>MAY</td>
+                    <td>Mill Colony, Bus stop near</td>
+                    <td>1</td>
+                    <td>Kumaran @ Muthamizh Kumaran, 33/23<br/>S/o Rajan,No. 22, JRS Nagar,Karumandapam,<br/>Trichy.<br/></td>
+                    <td>0.2</td>
+                    <td>T/W-1, CELL-1</td>
+                </tr>
+                <tr>
+                    <td>44</td>
+                    <td>E.PUDUR,Cr.No. 494/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS Act</td>
+                    <td>01.05.2023</td>
+                    <td>1700</td>
+                    <td>MAY</td>
+                    <td>Mil colony, Kanmani Complex near</td>
+                    <td>1</td>
+                    <td>Sakthivel, 20/23,S/o Murugan,No. 184, Malaipatti,<br/>K. Kallikudi, Srirangam<br/></td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>Srirangam,Cr.No. 734/2023,   U/S, s 8 © r/w 20 (b) (ii) (A) of NDPS Act</td>
+                    <td>01.05.2023</td>
+                    <td>1730</td>
+                    <td>MAY</td>
+                    <td>TV Kovil periyar bridge under</td>
+                    <td>1</td>
+                    <td>Manikandan, 23/23S/o Ravi,<br/>No. 465/B,Opposite to Modern School, <br/>Asthinapuram,Ariyalur District.<br/></td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>46</td>
+                    <td>FORT,Cr.No. 743/2023,   U/S, s 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act </td>
+                    <td>01.05.2023</td>
+                    <td>1300</td>
+                    <td>MAY</td>
+                    <td>Vennila street near Ration shop</td>
+                    <td>1</td>
+                    <td>Ravi @ Ravichandran,23/23,S/o Ramesh,<br/>No.141, Gandhi Nagar, Chinthamani, Trichy.<br/><br/></td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>47</td>
+                    <td>FORT,Cr.No. 744/2023,   U/S, s 8 ( c) r/w 20 (b)  (ii) (A) of NDPS Act </td>
+                    <td>01.05.2023</td>
+                    <td>1415</td>
+                    <td>MAY</td>
+                    <td>Bala @ Balakrishnan, S/o Rengarajan, No.92, Mullainagar, Sanjeevi nagar, Devadhanam, Trichy</td>
+                    <td>1</td>
+                    <td>Bala @ Balakrishnan, 27/23, S/o Rengarajan,<br/>No.92, Mullainagar, Sanjeevi Nagar, Devathanam.<br/></td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>48</td>
+                    <td>G.Market,Cr.No. 432/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS Act </td>
+                    <td>01.05.2023</td>
+                    <td>1030</td>
+                    <td>MAY</td>
+                    <td>Kammbipotta pillayar kovil street</td>
+                    <td>1</td>
+                    <td>Anand, 23/23,S/o Kanthavel,No.15/A, North Tharanallur, Kamaraj Nagar, Trichy.<br/><br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>49</td>
+                    <td>G.Market,Cr.No. 434/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS Act </td>
+                    <td>01.05.2023</td>
+                    <td>1215</td>
+                    <td>MAY</td>
+                    <td>G.Market Atch near</td>
+                    <td>1</td>
+                    <td>Tamilselvi, 55/23W/o Ganesan,No. 59, Kamaraj Nagar,<br/>Tharanallur (N), Trichy<br/></td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>T.NAGER,Cr.No. 613/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS Act</td>
+                    <td>01.05.2023</td>
+                    <td>1630</td>
+                    <td>MAY</td>
+                    <td>Thennur Eb Office, Railway gate near</td>
+                    <td>1</td>
+                    <td>Dinesh @ Dineshkumar, 29/23S/o Chinnaiyan,<br/>Kannan Store,Kuppankulam,Madurai Road,<br/>Trichy. <br/></td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>51</td>
+                    <td>G.Market,Cr.No. 442/2023,   U/S, 8 © r/w20 (b) (ii) (A) NDPS Act </td>
+                    <td>02.05.2023</td>
+                    <td>1015</td>
+                    <td>MAY</td>
+                    <td>Keerakadai bazar, sekkadi street, Ochaniyamman beef briyani shop near</td>
+                    <td>1</td>
+                    <td>Kumaravel 64/23, Otchappan, No.41, Sevior mavu Mill, Sekkaditheru, Keeraikadai Bazar, tharanallur, Trichy.</td>
+                    <td>1.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>52</td>
+                    <td>Fort,Cr.No. 757/2023,   U/S, 8 © r/w20 (b) (ii) (A) NDPS Act </td>
+                    <td>02.05.2023</td>
+                    <td>1000</td>
+                    <td>MAY</td>
+                    <td>Vennish street, Near ration shop</td>
+                    <td>1</td>
+                    <td>Sakthivendran 27/23, s/o Perumal, No.2/54, Ganapathi nagar, Ariyamangalam, Trichy.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>53</td>
+                    <td>Fort,Cr.No. 758/2023,   U/S, 8 © r/w20 (b) (ii) (A) NDPS Act </td>
+                    <td>02.05.2023</td>
+                    <td>1000</td>
+                    <td>MAY</td>
+                    <td>Near Periyasamy Tower , Chinthamani.</td>
+                    <td>1</td>
+                    <td>Ranjith 22/23, S/o thanapal,Nariyan Street, T.V.Koil, Srirangam, Trichy.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>54</td>
+                    <td>Woraiyur,Cr.No. 699/2023,   U/S, 8 © r/w20 (b) (ii) (A) NDPS Act </td>
+                    <td>02.05.2023</td>
+                    <td>1130</td>
+                    <td>MAY</td>
+                    <td>Vathukara street, Near Public Toilet</td>
+                    <td>1</td>
+                    <td>Kunasekaran 23/23, S/o Rajakopal, No.12/24, North madulaikollai Street,  Woraiyur, Trichy.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>55</td>
+                    <td>Woraiyur,Cr.No. 700/2023,   U/S, 8 © r/w20 (b) (ii) (A) NDPS Act </td>
+                    <td>02.05.2023</td>
+                    <td>1330</td>
+                    <td>MAY</td>
+                    <td>Linga Nagar </td>
+                    <td>1</td>
+                    <td>Kaliswaran 21/23, s/o Balasubramaniyan, No.34-B, Pandamangalam, Akkrakaram, Woraiyur, Trichy.,</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>56</td>
+                    <td>E.Pudur,Cr.No. 504/2023,   U/S, 8 © r/w20 (b) (ii) (A) NDPS Act </td>
+                    <td>02.05.2023</td>
+                    <td>1630</td>
+                    <td>MAY</td>
+                    <td>Mill colony, Mariyamman kovil backside</td>
+                    <td>1</td>
+                    <td>Arumugam 52/23, s/o Perumal, No.115, Mill Colony, RamJi Nagar, Trichy.</td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>57</td>
+                    <td>E.Pudur,Cr.No. 513/2023,   U/S, S 8 © r/w20 (b) (ii)  (A) NDPS Act </td>
+                    <td>03.05.2023</td>
+                    <td>1315</td>
+                    <td>MAY</td>
+                    <td>Mariyamman kovil  street, Mill colony, Ramjinagar, Trichy</td>
+                    <td>1</td>
+                    <td>Tarkar 66, S/o Arumugam, No.10/20, Mill Colony, Ramji nagar, Trichy.</td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>58</td>
+                    <td>Woraiyur,Cr.No. 706/2023,   U/S, s 8 © r/w 20 (b) (ii) (A) of NDPS <br/>Act <br/></td>
+                    <td>03.05.2023</td>
+                    <td>1500</td>
+                    <td>MAY</td>
+                    <td>Woraiyur Trunk road, Thambi Complex near</td>
+                    <td>1</td>
+                    <td>Manikandan 23/23, s/o Kumar, No.203, Vandikara Street, Woraiyur, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>59</td>
+                    <td>E.PUDUR,Cr.No. 526/2023,   U/S, s 8 © r/w 20 (b) (ii) (A) of NDPS <br/>Act <br/></td>
+                    <td>04.05.2023</td>
+                    <td>1830</td>
+                    <td>MAY</td>
+                    <td>Mill colony Mariyamman kovil near</td>
+                    <td>1</td>
+                    <td>Vimala, 53/23, W/o Rejendran, No. 120, Mariyamman Kovil Street, Mil Colony,<br/>Ramji Nagar, Trichy<br/></td>
+                    <td>0.03</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>60</td>
+                    <td>Woraiyur,Cr.No. 715/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS <br/>Act <br/></td>
+                    <td>04.05.2023</td>
+                    <td>1200</td>
+                    <td>MAY</td>
+                    <td>Near CSI Market</td>
+                    <td>1</td>
+                    <td>Muhamed Azeek 20/23, s/o Muhamed Sabi, No.6/A, North Pankali Street, Woraiyur, Trichy.</td>
+                    <td>1.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>61</td>
+                    <td>Srirangam,Cr.No. 763/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS <br/>Act <br/></td>
+                    <td>05.05.2023</td>
+                    <td>1100</td>
+                    <td>MAY</td>
+                    <td>Iraniyamman kovil junction</td>
+                    <td>1</td>
+                    <td>Suryakumar 23/23, S/o. Mohan, No.46, Malligaipuram, T.V.Kovil, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>62</td>
+                    <td>Fort,Cr.No. 784/2023,   U/S, 8© r/w 20(A)(ii) (A) NDPS Act</td>
+                    <td>05.05.2023</td>
+                    <td>1400</td>
+                    <td>MAY</td>
+                    <td>Old Good shed road, Near Railway junction</td>
+                    <td>1</td>
+                    <td>Sadam Ussain 22/23 S/o Balasubramaniyan, No. 42- Subbaiyah St, Sangiliyandapuram, Trichy</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>63</td>
+                    <td>Palakkarai,Cr.No. 561/2023,   U/S, 8 © r/w 20 (b) (ii) (A) of NDPS <br/>Act <br/></td>
+                    <td>05.05.2023</td>
+                    <td>1330</td>
+                    <td>MAY</td>
+                    <td>Duraisamypuram, Near Alex bridge</td>
+                    <td>1</td>
+                    <td>Murali 35/23, S/o. Raji, No.20/9, Housing Board, Sengulam colony, Palakkarai, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>64</td>
+                    <td>G.Market,Cr.No. 463/2023,   U/S, 8© r/w 20(A)(ii) (A) NDPS Act</td>
+                    <td>06.05.2023</td>
+                    <td>1945</td>
+                    <td>MAY</td>
+                    <td>Tharanallur Kallarai thottam near</td>
+                    <td>1</td>
+                    <td>Suriya 20/23 S/o Marimuthu,1-Ram Pillai Varaku Kadai Santhu, North Tharanallaur, G.market, Trichy</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>65</td>
+                    <td>PEW,Cr.No. 361/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>08.05.2023</td>
+                    <td>1600</td>
+                    <td>MAY</td>
+                    <td>Ramjinagar, Mill colony, Mariyammal kovil backside</td>
+                    <td>1</td>
+                    <td>Mahendran 64/23, s/o Palanisamy, Gandhi nagar, No.3/93, thayanur, Ramji ngar, Punganur. Trichy Dt.</td>
+                    <td>0.017</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>66</td>
+                    <td>PEW,Cr.No. 366/2023,   U/S, 8©r/w 20 (b)(ii)(B) NDPS Act</td>
+                    <td>10.05.2023</td>
+                    <td>1600</td>
+                    <td>MAY</td>
+                    <td>Subramaniyapuram Bus Stop Near</td>
+                    <td>2</td>
+                    <td>1) Kumaran 35/23 S/o Babu No 1/165 Malaipatti,  k.Kailkudei, Ramjnagar,Trichy 1.100 Kg<br/>2)Babu 62/23 S/oKaruppaiya No 1/165 Malaipatti,  k.Kailkudei,<br/>Ramjnagar,Trichy 1,150Kg<br/>3)Takker S/o Arumugam Millcolony,Ramjinagar, Trichy.<br/></td>
+                    <td>2.25</td>
+                    <td>TN-48 U 5738 TVS Stercity</td>
+                </tr>
+                <tr>
+                    <td>67</td>
+                    <td>E.Pudur,Cr.No. 567/2023,   U/S, 8©r/w 20 (b)(ii)(B) NDPS Act</td>
+                    <td>11.05.2023</td>
+                    <td>1030</td>
+                    <td>MAY</td>
+                    <td>Mill colony, Mariyamman kovil backside</td>
+                    <td>1</td>
+                    <td>Mallika 44/23, W/o. Mohan, No.72, Mariyamman kovil, Colony Ramji Nagar, Trichy. 2) Dhanalakshmi, W/o. Pandiyan</td>
+                    <td>1.3</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>68</td>
+                    <td>Srirangam,Cr.No. 819/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>12.05.23</td>
+                    <td>1630</td>
+                    <td>MAY</td>
+                    <td>Thimmarayasamuthiram community hall near</td>
+                    <td>1</td>
+                    <td>Bullet Mani @ Manikandan, 29/23, S/o Kittappa, NO.6, Thimmarayasamuthiram, TV Kovil, Trichy.</td>
+                    <td>0.05</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>69</td>
+                    <td>FORT,Cr.No. 860/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>1500</td>
+                    <td>MAY</td>
+                    <td>EB Road Town station road </td>
+                    <td>1</td>
+                    <td>Ajithkumar 25/23, S/o. Kolanchiyappan, No.24/27, Bharathiyar Street, EB Road, Trichy.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>70</td>
+                    <td>FORT,Cr.No. 865/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>2145</td>
+                    <td>MAY</td>
+                    <td>Chinthamani Annastatue near</td>
+                    <td>1</td>
+                    <td>Rafiq @ Mohamed Rafiq 22/23, S/o. Megaboob Batcha, No.23, Kovalan Street, Senthaneerpuram, Trichy.</td>
+                    <td>0.25</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>71</td>
+                    <td>FORT,Cr.No. 866/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>2245</td>
+                    <td>MAY</td>
+                    <td>Chinthamani bazar, wineshop near</td>
+                    <td>1</td>
+                    <td>Mohamed Farook 21/23, s/o. Megaboob Batcha, No.23, Kovalan Street, Senthaneerpuram, Trichy.</td>
+                    <td>0.25</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>72</td>
+                    <td>G.Market,Cr.No. 507/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>1030</td>
+                    <td>MAY</td>
+                    <td>Devar poonga near, Tharanallur</td>
+                    <td>1</td>
+                    <td>Neerkathalingam 22/23, s/o. Marimuthu, No.2/MA Rampillai Viragukadai Santhu, North Tharanallur, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>73</td>
+                    <td>G.Market,Cr.No. 508/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>1215</td>
+                    <td>MAY</td>
+                    <td>Devar poonga near, Tharanallur</td>
+                    <td>1</td>
+                    <td>Ayyappan 21/23, S/o. Venkatesan, Mosampatti Keela Street, Ettarai, Trichy.</td>
+                    <td>0.1</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>74</td>
+                    <td>G.Market,Cr.No. 519/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>15.05.23</td>
+                    <td>1425</td>
+                    <td>MAY</td>
+                    <td>Varaganeri Kummikarai, Near Patchai nagar</td>
+                    <td>1</td>
+                    <td>Yunus 53/23, S/o. Ahamed, No.16, Muslim Street, Varaganeri, Trichy.</td>
+                    <td>1.15</td>
+                    <td>T/W-1, CELL-1</td>
+                </tr>
+                <tr>
+                    <td>75</td>
+                    <td>Palakkarai,Cr.No. 628/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>900</td>
+                    <td>MAY</td>
+                    <td>Belsground near</td>
+                    <td>1</td>
+                    <td>Surya 20/23, S/o. Manickam, No.22B, Kruvikara street, Palakkarai, Trichy.</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>76</td>
+                    <td>Palakkarai,Cr.No. 631/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>1000</td>
+                    <td>MAY</td>
+                    <td>Warehouse bus stop near</td>
+                    <td>1</td>
+                    <td>Santhosh 24/23, S/o. Sankar, No.3/3E, Adaikkala Madha Kovil Street, Santhiyagappar Palayam, Kemstown, Palakkarai, Trichy</td>
+                    <td>0.2</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>77</td>
+                    <td>Woraiyur,Cr.No. 823/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>14.05.23</td>
+                    <td>2145</td>
+                    <td>MAY</td>
+                    <td>Salairoad, Karpargam tea stall</td>
+                    <td>1</td>
+                    <td>Lakshmi Narayanan 21/23, s/o. Umapathy, No.56J 54 Keeraikollai street, Annai Medical Hospital, Woraiyur, Trichy.</td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>78</td>
+                    <td>Woraiyur,Cr.No. 834/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>15.05.23</td>
+                    <td>1215</td>
+                    <td>MAY</td>
+                    <td>Vathukara street, Near Public Toilet</td>
+                    <td>1</td>
+                    <td>Vigneshvaran 21/23, s/o. Dhanasekar, No.53T Sevanthi Thoppu, Rengan Nagar, Woraiyur, Trichy.</td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>79</td>
+                    <td>Airport,Cr.No. 483/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>18.05.23</td>
+                    <td>1400</td>
+                    <td>MAY</td>
+                    <td>New street, Moris nagar, </td>
+                    <td>1</td>
+                    <td>Senthilkumar 45/23, S/o. Sakthivel, No.22, Karikalan, Anna Nagar, Pudukkottai Main Road, Sempattu, Airport, Trichy.</td>
+                    <td>0.15</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>80</td>
+                    <td>E.PUDUR,Cr.No. 627/2023,   U/S, 8© r/w 20(b)(ii) (A) NDPS Act</td>
+                    <td>19.05.2023</td>
+                    <td>1545</td>
+                    <td>MAY</td>
+                    <td>Panjapur Pasumai  Garden near</td>
+                    <td>1</td>
+                    <td>Nanthakumar, 22/23, s/o Sankar, No.38/39 Indra Nagar, E.Pudur, Trichy.</td>
+                    <td>1.3</td>
+                    <td>-</td>
+                </tr>
+                    
+            
+                
+                
+        </tbody>
+        <tfoot class="table-dark">
+            <tr>
+              <th>Sl.No.</th>
+              <th>Station</th>
+              <th>Date of Report</th>
+              <th>Time of Report</th>
+              <th>Month</th>
+              <th>Place of Occurrence</th>
+              <th>No.of Accused Arrested</th>
+              <th>Name of Accused</th>
+              <th>Seized Ganja</th>
+              <th>Siezed Vehicle/Mobile</th>
+            </tr>
+        </tfoot>
+                    </table>
+                </div>   
+            </div>
+        </div>   
+    </div>
+
+    
+</body>
+
 </html>
+
+
+
+
+
+
+

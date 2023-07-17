@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crime Registration</title>
+  <link rel="stylesheet" type="text/css" href="registercrime.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Register Crime</h2>
+    <form id="crimeForm" action="#" method="POST">
+      <div class="form-group">
+        <label for="station">Station:</label>
+        <input type="text" id="station" name="station" required>
+      </div>
+
+      <div class="form-group">
+        <label for="crimeDate">Date of Crime:</label>
+        <input type="date" id="crimeDate" name="crimeDate" required>
+      </div>
+
+      <div class="form-group">
+        <label for="crimeTime">Time of Crime:</label>
+        <select id="crimeTime" name="crimeTime" required>
+          <option value="">Select Time</option>
+          <option value="00">12:00 AM</option>
+          <option value="01">01:00 AM</option>
+          <option value="02">02:00 AM</option>
+          <option value="03">03:00 AM</option>
+          <option value="04">04:00 AM</option>
+          <option value="05">05:00 AM</option>
+          <option value="06">06:00 AM</option>
+          <option value="07">07:00 AM</option>
+          <option value="08">08:00 AM</option>
+          <option value="09">09:00 AM</option>
+          <option value="10">10:00 AM</option>
+          <option value="11">11:00 AM</option>
+          <option value="12">12:00 PM</option>
+          <option value="13">01:00 PM</option>
+          <option value="14">02:00 PM</option>
+          <option value="15">03:00 PM</option>
+          <option value="16">04:00 PM</option>
+          <option value="17">05:00 PM</option>
+          <option value="18">06:00 PM</option>
+          <option value="19">07:00 PM</option>
+          <option value="20">08:00 PM</option>
+          <option value="21">09:00 PM</option>
+          <option value="22">10:00 PM</option>
+          <option value="23">11:00 PM</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="crimeLocation">Location of Crime:</label>
+        <input type="text" id="crimeLocation" name="crimeLocation" required>
+      </div>
+
+      <div class="form-group">
+
+        
+        <label for="crimeType">Type of Crime:</label>
+        <select id="crimeType" name="crimeType" required>
+          <option value="">Select Crime Type</option>
+          <option value="ganja">Ganja</option>
+          <option value="robbery">Robbery</option>
+          <option value="kidnap">Kidnap</option>
+          <option value="murder">Murder</option>
+          <option value="sexualassault">Sexual Assault</option>
+        </select>
+      </div>
+
+      <div id="ganjaFields" class="form-group hidden">
+        <label for="seizedGanja">Seized Ganja: </label>
+        <input type="text" id="seizedGanja" name="seizedGanja">
+        <label for="numberOfAccused"> Number of Accused Arrested:</label>
+        <input type="text" id="numberOfAccused" name="numberOfAccused">
+        <label for="nameOfAccused"> Names of Accused Arrested:</label>
+        <input type="text" id="nameOfAccused" name="nameOfAccused">
+      </div>
+
+      <div id="robberyFields" class="form-group hidden">
+        <label for="itemRobbed">Item Robbed:</label>
+        <input type="text" id="itemRobbed" name="itemRobbed">
+        <label for="numberOfAccused"> Number of Accused Arrested:</label>
+        <input type="text" id="numberOfAccused" name="numberOfAccused">
+        <label for="nameOfAccused"> Names of Accused Arrested:</label>
+        <input type="text" id="nameOfAccused" name="nameOfAccused">
+      </div>
+
+      <div id="kidnapFields" class="form-group hidden">
+        <label for="victimDetails">Victim Details:</label>
+        <input type="text" id="victimDetails" name="victimDetails">
+        <label for="numberOfAccused"> Number of Accused Arrested:</label>
+        <input type="text" id="numberOfAccused" name="numberOfAccused">
+        <label for="nameOfAccused"> Names of Accused Arrested:</label>
+        <input type="text" id="nameOfAccused" name="nameOfAccused">
+      </div>
+
+      <div id="murderFields" class="form-group hidden">
+        <label for="victimDetails">Victim Details:</label>
+        <input type="text" id="victimDetails" name="victimDetails">
+        <label for="weaponUsed">Weapon Used:</label>
+        <input type="text" id="weaponUsed" name="weaponUsed">
+        <label for="numberOfAccused"> Number of Accused Arrested:</label>
+        <input type="text" id="numberOfAccused" name="numberOfAccused">
+        <label for="nameOfAccused"> Names of Accused Arrested:</label>
+        <input type="text" id="nameOfAccused" name="nameOfAccused">
+      </div>
+
+      <div id="sexualAssaultFields" class="form-group hidden">
+        <label for="victimDetails">Victim Details:</label>
+        <input type="text" id="victimDetails" name="victimDetails">
+        <label for="numberOfAccused"> Number of Accused Arrested:</label>
+        <input type="text" id="numberOfAccused" name="numberOfAccused">
+        <label for="nameOfAccused"> Names of Accused Arrested:</label>
+        <input type="text" id="nameOfAccused" name="nameOfAccused">
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script src="registercrime.js"></script>
+</body>
+</html>
