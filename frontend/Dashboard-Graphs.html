@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Crime Analysis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="landing.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart1);
+      function drawChart1() {
+        var data = google.visualization.arrayToDataTable([
+          ['Police Station', 'Gaanja Seized'],
+          ['E.PUDUR',   8.46],
+          ['PALAKKARAI',    5.05],
+          ['WORAIYUR',  4],
+          ['FORT',  3],
+          ['G.MARKET',  3],
+          ['PWE',   2.467],
+          ['A.MANGALAM',    1.1],
+          ['S.COURT',   0.71],
+          ['SRIRANGAM', 0.21],
+          ['AIRPORT',   0.15],
+          ['KK NAGAR',  0.01],
+          ['T.NAGER',   0.05],
+        ]);
+
+        var options = {
+          title: 'POLICE STATION DATA',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_1'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart2);
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+          ['Police Station', 'Gaanja Seized'],
+          ['E.PUDUR',   23],
+          ['PALAKKARAI',    14],
+          ['WORAIYUR',  9],
+          ['FORT',  13],
+          ['G.MARKET',  9],
+          ['PEW',   7],
+          ['A.MANGALAM',    3],
+          ['S.COURT',   1],
+          ['SRIRANGAM', 4],
+          ['AIRPORT',   1],
+          ['KK NAGAR',  1],
+          ['T.NAGER',   1],
+        ]);
+
+        var options = {
+          title: 'POLICE STATION DATA',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_2'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart3);
+      function drawChart3() {
+        var data = google.visualization.arrayToDataTable([
+        ['Month', 'Amount of Gaanja caught'],
+          ['January',     2.42],
+          ['February',    1.8],
+          ['March',   7.91],
+          ['April',   4.41],
+          ['May',     12.547]
+        ]);
+        var view = new google.visualization.DataView(data);
+        var options = {
+          title: "AMOUNT OF GANJA CAUGHT PER MONTH",
+          width: 600,
+          height: 400,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values_1"));
+        chart.draw(view, options);
+    }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart4);
+      function drawChart4() {
+        var data = google.visualization.arrayToDataTable([
+        ['Month', 'NUMBER OF ACCUSED'],
+          ['January',     8],
+          ['February',    3],
+          ['March',   12],
+          ['April',   24],
+          ['May',     39]
+        ]);
+        var view = new google.visualization.DataView(data);
+        var options = {
+          title: "NUMBER OF ACCUSED PER MONTH",
+          width: 600,
+          height: 400,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values_2"));
+        chart.draw(view, options);
+    }
+    </script>
+
+</head>
+<body>
+  <div class="navigation">
+    <div class="nav-bar">
+        <i class='bx bx-menu sidebarOpen' ></i>
+        <img src="image.png" alt="" width="75px" z-index="100">
+        <span class="logo navLogo"><a href="#">TRICHY CITY POLICE</a></span>
+        <!-- <div><br><br></div> -->
+        <div class="menu">
+            <div class="logo-toggle">
+                <i class='bx bx-x siderbarClose'></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="landing.html">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+  </div>
+  <nav class="sidebar close">
+    <header>
+        <!-- <div class="image-text"> -->
+          <!-- <i class='bx bx-chevron-right toggle'></i> -->
+              <i class='bx bx-menu toggle'></i>
+                <!-- <img src="image.png" alt="" width="70px" > -->
+            <!-- <div class="text logo-text">
+                <span class="name">Dashboard</span>
+            </div> -->
+        <!-- </div> -->
+
+    </header>
+    <div class="menu-bar">
+        <div class="menu">
+          <li class="search-box">
+            <!-- <i class='bx bx-menu toggle'></i> -->
+            <!-- <i class='bx bx-search icon'></i> -->
+          </li>
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-home icon'></i>
+                        <!-- <i class='bx bxs-dashboard icon' ></i> -->
+                        <!-- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAARJJREFUSEvt1r8uBlEQBfDfR6VSi0RBodTR8gAewAvoFaKl9QiewFvQ0mo0FBLRKXVCNtmbbG7ceyfZ4tvIbnvPzJk5O/8WlvQtlsRrUsRb2C4o8Ykn/PTv69jDSkO5V7wNMXnGG3inqsQJbnsnz9gN/K4u0E18JGxOfIi7hqMrXPaYlHmA2xHuZ+KkwCz1X0Xzv4prHw+N3rjAdY/5wlqkl3CAx1I7reIGO5XJdY6X/v0Mx4HJ1eFP8V0iDgY/HjaZJdGSOk91KGHNtil1pLhy8lQ0LdtqcUUmV06chn/LdvSSmIlnqUvTZZrFFTn2hhkNj7iabfPY65zWzttcxvxsLdk2z9vx0z/oYTJLIhjveNgvBvBgH44/bmEAAAAASUVORK5CYII="/> -->
+                        <!-- <i class='bx bx-dashboard-alt icon' ></i> -->
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="data.html">
+                        <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                        <span class="text nav-text">Data</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="index.html">
+                        <i class='bx bxs-map icon'></i>
+                        <span class="text nav-text">Mapview</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="profile.html">
+                        <!-- <i class='bx bx-heart icon' ></i> -->
+                        <i class='bx bx-cog icon' ></i>
+                        <span class="text nav-text">Admin</span>
+                    </a>
+                  </li>
+            </ul>
+        </div>
+        <div class="bottom-content">
+            <li class="">
+                <a href="#">
+                    <i class='bx bx-log-out icon' ></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+
+        </div>
+    </div>
+  </nav>
+  <table>
+      <tr>
+        <td><div id="piechart_3d_1" style="width: 900px; height: 500px;"></div></td>
+      </tr>
+      <tr>
+        <td><div id="piechart_3d_2" style="width: 900px; height: 500px;"></div></th></td>
+      </tr>
+      <tr>
+        <td><div id="columnchart_values_1" style="width: 900px; height: 300px;"></div></td>
+      </tr>
+      <tr>
+        <td><div id="columnchart_values_2" style="width: 900px; height: 300px;"></div></td>
+      </tr>
+  </table>
+  <script>
+    const body = document.querySelector('body'),
+    sidebar = body.querySelector('nav'),
+    toggle = body.querySelector(".toggle"),
+    searchBtn = body.querySelector(".search-box"),
+    modeSwitch = body.querySelector(".toggle-switch"),
+    modeText = body.querySelector(".mode-text");
+toggle.addEventListener("click" , () =>{
+  sidebar.classList.toggle("close");
+})
+searchBtn.addEventListener("click" , () =>{
+  sidebar.classList.remove("close");
+})
+modeSwitch.addEventListener("click" , () =>{
+  body.classList.toggle("dark");
+  
+  if(body.classList.contains("dark")){
+      modeText.innerText = "Light mode";
+  }else{
+      modeText.innerText = "Dark mode";
+      
+  }
+});
+
+
+  </script>
+</body>
+</html>
